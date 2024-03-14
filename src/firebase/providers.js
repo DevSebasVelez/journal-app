@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FirebaseAuth } from "./config";
 
 
@@ -19,12 +19,12 @@ export const signInWithGoogle = async ( ) => {
 
     } catch (error) {
         // Handle Errors here.
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
-        const email = error.customData.email;
+        // const email = error.customData.email;
         // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        // const credential = GoogleAuthProvider.credentialFromError(error);
 
         return {
             ok: false,
@@ -53,6 +53,32 @@ export const registerUserWithEmailPassword = async ({ email, password, displayNa
         }
 
     } catch (error) {
-        return {ok: false, errorMessage: error.message}
+        const errorMessage = error.message;
+        return {ok: false, errorMessage }
     }
+}
+
+
+export const loginWithEmailPassword = async ({ email, password }) => {
+
+    try {
+        const resp = await signInWithEmailAndPassword( FirebaseAuth, email, password );
+        const { uid, photoURL, displayName } = resp.user;
+
+        return {
+            ok: true,
+            uid, email, photoURL ,displayName,
+        }
+
+    } catch (error) {
+        const errorMessage = error.message;
+        return {ok: false, errorMessage }
+    }
+
+}
+
+
+
+export const logOutFirebase = async() => {
+    return await FirebaseAuth.signOut();
 }
