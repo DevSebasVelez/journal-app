@@ -2,10 +2,22 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore/lite';
+// import { getEnvironments } from "../journal/helpers";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+// const {
+//   APIKEY
+//   AUTHDOMAIN
+//   PROJECTID
+//   STORAGEBUCKET
+//   MESSAGINGSENDERID
+//   APPID
+// } = getEnvironments();
+
 
 // Your web app's Firebase configuration
 //Dev/Prod

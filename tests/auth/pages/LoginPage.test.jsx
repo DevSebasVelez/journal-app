@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { LoginPage } from '../../../src/auth/pages/LoginPage';
 import { authSlice, } from '../../../src/store/auth';
-import { startGoogleSignIn } from '../../../src/store/auth/thunks';
+import { startGoogleSignIn, startLoginWithEmailPassword } from '../../../src/store/auth/thunks';
 import { notAuthenticatedState } from '../../fixtures/authFixtures';
 
 
@@ -91,14 +91,14 @@ describe('Pruebas en <LoginPage />', () => {
 
         const emailField = screen.getByRole('textbox', { name: 'Correo' });
         fireEvent.change( emailField, { target: { name: 'email', value: email } });
-        
+
         const passwordField = screen.getByTestId('password');
         fireEvent.change( passwordField, { target: { name: 'password', value: password } });
-        
+
         const loginForm = screen.getByLabelText('submit-form');
         fireEvent.submit( loginForm );
 
-        
+
         expect( mockStartLoginWithEmailPassword ).toHaveBeenCalledWith({
             email: email,
             password: password
@@ -107,5 +107,4 @@ describe('Pruebas en <LoginPage />', () => {
 
     });
 
-    
 });

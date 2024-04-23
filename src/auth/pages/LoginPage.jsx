@@ -56,6 +56,7 @@ export const LoginPage = () => {
                 placeholder='Contraseña'
                 fullWidth
                 name='password'
+                inputProps={{'data-testid': 'password'}}
                 value={ password }
                 onChange={ onInputChange }
               />
@@ -75,7 +76,8 @@ export const LoginPage = () => {
                   disabled={ isAuthenticating }
                   type='submit'
                   variant='contained'
-                  fullWidth>
+                  fullWidth
+                  aria-label='submit-form'>
                   Login
                 </Button>
               </Grid>
@@ -84,7 +86,8 @@ export const LoginPage = () => {
                   disabled={ isAuthenticating }
                   onClick={ onGoogleSignIn }
                   variant='contained'
-                  fullWidth>
+                  fullWidth
+                  aria-label='google-btn'>
                   <Google />
                   <Typography sx={{ ml: 1 }}>Google</Typography>
                 </Button>

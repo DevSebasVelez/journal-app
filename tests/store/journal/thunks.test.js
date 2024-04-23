@@ -13,12 +13,12 @@ describe('Pruebas en Journal Thunks', () => {
 
 
 
-    test('startNewNote debe de crear una nueva nota en blanco', async() => {
+    test('startNewNote debe de crear una nueva nota en blanco', () => {
 
         const uid = 'TEST-UID';
         getState.mockReturnValue({ auth: { uid: uid } });
 
-        await startNewNote()( dispatch, getState );
+         startNewNote()( dispatch, getState );
 
         expect( dispatch ).toHaveBeenCalledWith( savingNewNote() );
         expect( dispatch ).toHaveBeenCalledWith( addNewEmptyNote({
@@ -36,11 +36,11 @@ describe('Pruebas en Journal Thunks', () => {
 
         // Borrar de firebase
         const collectionRef = collection( FirebaseDB, `${ uid }/journal/notes`);
-        const docs = await getDocs( collectionRef );
+        const docs = getDocs( collectionRef );
 
         const deletePromises = [];
         docs.forEach( doc => deletePromises.push( deleteDoc( doc.ref ) ) );
-        await Promise.all( deletePromises );
+         Promise.all( deletePromises );
 
     });
 
